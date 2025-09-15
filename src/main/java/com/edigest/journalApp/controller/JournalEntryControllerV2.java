@@ -33,7 +33,7 @@ public class JournalEntryControllerV2 {
 
 
         try{
-            myEntity.setDate(LocalDateTime.now());
+
             JournalEntryService.saveEntry(myEntity);
             return new ResponseEntity<>(myEntity, HttpStatus.CREATED);
         }catch(Exception e){

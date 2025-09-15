@@ -1,28 +1,30 @@
 package com.edigest.journalApp.service;
+
 import com.edigest.journalApp.entity.JournalEntry;
+import com.edigest.journalApp.entity.User;
 import com.edigest.journalApp.repository.JournalEntryRepository;
+import com.edigest.journalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.ErrorManager ;
+import java.util.logging.ErrorManager;
 
 @Component
-public class JournalEntryService {
+public class UserService {
 
 
     @Autowired
-    private JournalEntryRepository JournalEntryRepository;
+    private UserRepository UserRepository;
 
 
-    public void saveEntry(JournalEntry journalEntry){
+    public void saveEntry(User user){
         try {
-            journalEntry.setDate(LocalDateTime.now());
-            JournalEntryRepository.save(journalEntry);
+
+            UserRepository.save(user);
         }
         catch(Exception e){
             ErrorManager log = null;
@@ -30,18 +32,20 @@ public class JournalEntryService {
         }
     }
 
-    public List<JournalEntry> getAll(){
-        return JournalEntryRepository.findAll();
+    public List<User> getAll(){
+        return UserRepository.findAll();
     }
 
-    public Optional<JournalEntry> findById(ObjectId id){
-        return JournalEntryRepository.findById(id);
+    public Optional<User> findById(ObjectId id){
+        return UserRepository.findById(id);
     }
 
     public void deleteById(ObjectId id){
-        JournalEntryRepository.deleteById(id);
+        UserRepository.deleteById(id);
+    }
 
-
+    public User findByUserName(String userName){
+        return UserRepository.findByUserName(userName);
     }
 }
 
