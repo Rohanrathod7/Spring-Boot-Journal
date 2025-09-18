@@ -44,7 +44,7 @@ public class UserService {
         UserRepository.deleteById(id);
     }
 
-    public User findByUserName(String userName){
+    public User findByUserName(String userName) {
         return UserRepository.findByUserName(userName);
     }
 }
